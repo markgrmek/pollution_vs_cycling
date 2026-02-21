@@ -4,7 +4,6 @@ from utils import createAllLayers
 from db_utils import getBikeLaneLenght_perKM2, getBikeLaneLenght_perPER, getBikeLaneLenght_SUM, getCityArea, getCityPopulation
 
 # Page header
-
 streamlit.set_page_config(page_title="Cycling VS Pollution", layout="wide", page_icon="🚲")
 
 streamlit.markdown(

@@ -12,7 +12,9 @@ from pandas import DataFrame, read_csv
 from engine import engine
 from tables import metadata, City, BikeLane, Pollution
 
-#GENERAL==========================================================================================
+#====================================================
+#GENERAL DATABASE COMMANDS
+#====================================================
 def createTables() -> None:
     metadata.create_all(engine)
     print('All tables sucesfully created')
@@ -29,13 +31,19 @@ def createDB() -> None:
         addBikeLane(city)
         addPollution(city)
 
+#====================================================
+#MISC FUNCTIONS
+#====================================================
+
 def remove_z(x,y,z=None):
     return tuple(filter(None, [x, y]))
 
 def to_coords(geometry) -> list[list]:
     return get_coordinates(geometry).tolist()
 
-#CITIES============================================================================================
+#====================================================
+#CITY FUNCTIONS
+#====================================================
 def addCity(city: Literal['London','Berlin']) -> None:
     if city == 'London':
         data = {'Name': city,
@@ -110,7 +118,9 @@ def getCityPopulation(city: Literal['Berlin', 'London']) -> float:
     
     return data[0]
 
-#BIKE LANES======================================================================================
+#====================================================
+#BIKE INFRASTRUCTURE FUNCTIONS
+#====================================================
 def addBikeLane(city: Literal['London','Berlin']) -> None:
     
     #DATA PREP----------------------------------------
@@ -194,7 +204,9 @@ def getBikeLaneLenght_perKM2(city: Literal['Berlin','London']) -> float:
 def getBikeLaneLenght_perPER(city: Literal['Berlin','London']) -> float:
     return getBikeLaneLenght_SUM(city)/getCityPopulation(city)
 
-#POLUTION========================================================================================
+#====================================================
+#POLLUTION FUNCTIONS
+#====================================================
 def addPollution(city: Literal['Berlin', 'London']) -> None:
 
     #DATA PREP----------------------------------------------------
